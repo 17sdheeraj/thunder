@@ -1,0 +1,126 @@
+display_information:
+  name: Advanced Slack Bot
+  description: "An bot made by U0828RTU7FE for #thunder ysws"
+  background_color: "#4A154B"
+  long_description: |
+    This bot handles commands such as /qotd, /dt-search, /userinfo, /dt-poll, /dt-remind, /trivia, /dadjoke, /urban, /disify, /dns, /website, /weather, /help, /song, /ip, /axolotl, /catfact, /dogfact, /errorid, /beat.
+    It supports daily QOTD posting and URL previews.
+features:
+  bot_user:
+    display_name: Advanced Slack Bot
+    always_online: true
+  slash_commands:
+    - command: /qotd
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Send Quote of the Day
+      usage_hint: "Usage: /qotd"
+      should_escape: false
+    - command: /dt-search
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Search the web (DuckDuckGo)
+      usage_hint: "Usage: /dt-search query"
+      should_escape: false
+    - command: /userinfo
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Get info about a user
+      usage_hint: "Usage: /userinfo @username"
+      should_escape: false
+    - command: /dt-poll
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Create a poll
+      usage_hint: "Usage: /dt-poll question"
+      should_escape: false
+    - command: /dt-remind
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Set a reminder
+      usage_hint: "Usage: /dt-remind task"
+      should_escape: false
+    - command: /trivia
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Get a random trivia question
+      usage_hint: "Usage: /trivia"
+      should_escape: false
+    - command: /dadjoke
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Get a random dad joke
+      usage_hint: "Usage: /dadjoke"
+      should_escape: false
+    - command: /urban
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Look up a term on Urban Dictionary
+      usage_hint: "Usage: /urban term"
+      should_escape: false
+    - command: /disify
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Check if email is disposable
+      usage_hint: "Usage: /disify email@example.com"
+      should_escape: false
+    - command: /dns
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Lookup DNS records for a domain
+      usage_hint: "Usage: /dns example.com"
+      should_escape: false
+    - command: /website
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Get website info (title, description)
+      usage_hint: "Usage: /website example.com"
+      should_escape: false
+    - command: /weather
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Get weather info for a city
+      usage_hint: "Usage: /weather city"
+      should_escape: false
+    - command: /help
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Show help menu with all commands
+      usage_hint: "Usage: /help"
+      should_escape: false
+    - command: /song
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Search for a song
+      usage_hint: "Usage: /song song name"
+      should_escape: false
+    - command: /ip
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Get IP info
+      usage_hint: "Usage: /ip 1.1.1.1"
+      should_escape: false
+    - command: /axolotl
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Send random axolotl image
+      usage_hint: "Usage: /axolotl"
+      should_escape: false
+    - command: /catfact
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Send a random cat fact
+      usage_hint: "Usage: /catfact"
+      should_escape: false
+    - command: /dogfact
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Send a random dog fact
+      usage_hint: "Usage: /dogfact"
+      should_escape: false
+    - command: /errorid
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Show HTTP cat for status code
+      usage_hint: "Usage: /errorid 404"
+      should_escape: false
+    - command: /beat
+      url: https://thunderapi.sdheeraj.is-cool.dev/slack/events
+      description: Convert between .beat time and regular time
+      usage_hint: "Usage: /beat [time/@XXX]"
+      should_escape: false
+oauth_config:
+  scopes:
+    bot:
+      - chat:write
+      - commands
+      - users:read
+      - reactions:write
+      - channels:read
+      - chat:write.public
+      - im:write
+settings:
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
