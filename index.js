@@ -177,25 +177,25 @@ if (contentType.includes('application/json')) {
     if (command) {
       const commandHandlers = {
         '/dt-search': () => handleSearch(text, env, channel, responseUrl),
-        '/userinfo': () => handleUserInfo(`<@${user}>`, env, channel, responseUrl),
+        '/dt-userinfo': () => handleUserInfo(`<@${user}>`, env, channel, responseUrl),
         '/dt-poll': () => handlePoll(text, env, channel, responseUrl),
         '/dt-remind': () => handleReminder(text, env, channel, responseUrl),
-        '/qotd': () => sendQuoteOfTheDay(env, channel, responseUrl),
-        '/trivia': () => sendTrivia(env, channel, responseUrl),
-        '/dadjoke': () => sendDadJoke(env, channel, responseUrl),
-        '/urban': () => sendUrbanDefinition(env, channel, text, responseUrl),
-        '/disify': () => handleDisposableEmail(text, env, channel, responseUrl),
-        '/dns': () => handleDnsLookup(text, env, channel, responseUrl),
-        '/website': () => handleWebsiteInfo(text, env, channel, responseUrl),
-        '/weather': () => handleWeather(text, env, channel, responseUrl),
-        '/help': () => sendHelpMenu(env, channel, responseUrl),
-        '/song': () => handleSongSearch(text, env, channel, responseUrl),
-        '/ip': () => handleIpLookup(text, env, channel, responseUrl),
-        '/axolotl': () => sendAxolotl(env, channel, responseUrl),
-        '/catfact': () => sendCatFact(env, channel, responseUrl),
-        '/dogfact': () => sendDogFact(env, channel, responseUrl),
-        '/errorid': () => handleHttpCat(text, env, channel, responseUrl),
-        '/beat': () => handleBeatCommand(text, env, channel, responseUrl)
+        '/dt-qotd': () => sendQuoteOfTheDay(env, channel, responseUrl),
+        '/dt-trivia': () => sendTrivia(env, channel, responseUrl),
+        '/dt-dadjoke': () => sendDadJoke(env, channel, responseUrl),
+        '/dt-urban': () => sendUrbanDefinition(env, channel, text, responseUrl),
+        '/dt-disify': () => handleDisposableEmail(text, env, channel, responseUrl),
+        '/dt-dns': () => handleDnsLookup(text, env, channel, responseUrl),
+        '/dt-website': () => handleWebsiteInfo(text, env, channel, responseUrl),
+        '/dt-weather': () => handleWeather(text, env, channel, responseUrl),
+        '/dt-help': () => sendHelpMenu(env, channel, responseUrl),
+        '/dt-song': () => handleSongSearch(text, env, channel, responseUrl),
+        '/dt-ip': () => handleIpLookup(text, env, channel, responseUrl),
+        '/dt-axolotl': () => sendAxolotl(env, channel, responseUrl),
+        '/dt-catfact': () => sendCatFact(env, channel, responseUrl),
+        '/dt-dogfact': () => sendDogFact(env, channel, responseUrl),
+        '/dt-errorid': () => handleHttpCat(text, env, channel, responseUrl),
+        '/dt-beat': () => handleBeatCommand(text, env, channel, responseUrl)
       };
 
       const handler = commandHandlers[command];
@@ -234,25 +234,25 @@ if (body.event?.type === 'message' && !body.event.bot_id) {
 
   const commandHandlers = {
     '/dt-search': () => handleSearch(args, env, channel),
-    '/userinfo': () => handleUserInfo(text, env, channel),
+    '/dt-userinfo': () => handleUserInfo(text, env, channel),
     '/dt-poll': () => handlePoll(args, env, channel),
     '/dt-remind': () => handleReminder(args, env, channel),
-    '/qotd': () => sendQuoteOfTheDay(env, channel),
-    '/trivia': () => sendTrivia(env, channel),
-    '/dadjoke': () => sendDadJoke(env, channel),
-    '/urban': () => sendUrbanDefinition(env, channel, args),
-    '/disify': () => handleDisposableEmail(args, env, channel),
-    '/dns': () => handleDnsLookup(args, env, channel),
-    '/website': () => handleWebsiteInfo(args, env, channel),
-    '/weather': () => handleWeather(args, env, channel),
-    '/help': () => sendHelpMenu(env, channel),
-    '/song': () => handleSongSearch(args, env, channel),
-    '/ip': () => handleIpLookup(args, env, channel),
-    '/axolotl': () => sendAxolotl(env, channel),
-    '/catfact': () => sendCatFact(env, channel),
-    '/dogfact': () => sendDogFact(env, channel),
-    '/errorid': () => handleHttpCat(args, env, channel),
-    '/beat': () => handleBeatCommand(text, env, channel),
+    '/dt-qotd': () => sendQuoteOfTheDay(env, channel),
+    '/dt-trivia': () => sendTrivia(env, channel),
+    '/dt-dadjoke': () => sendDadJoke(env, channel),
+    '/dt-urban': () => sendUrbanDefinition(env, channel, args),
+    '/dt-disify': () => handleDisposableEmail(args, env, channel),
+    '/dt-dns': () => handleDnsLookup(args, env, channel),
+    '/dt-website': () => handleWebsiteInfo(args, env, channel),
+    '/dt-weather': () => handleWeather(args, env, channel),
+    '/dt-help': () => sendHelpMenu(env, channel),
+    '/dt-song': () => handleSongSearch(args, env, channel),
+    '/dt-ip': () => handleIpLookup(args, env, channel),
+    '/dt-axolotl': () => sendAxolotl(env, channel),
+    '/dt-catfact': () => sendCatFact(env, channel),
+    '/dt-dogfact': () => sendDogFact(env, channel),
+    '/dt-errorid': () => handleHttpCat(args, env, channel),
+    '/dt-beat': () => handleBeatCommand(text, env, channel),
     'default': () => handleUrlPreviews(text, env, channel)
   };
 
@@ -292,7 +292,7 @@ try {
 async function handleUserInfo(text, env, channel, responseUrl = null) {
 const userId = text.match(/<@(\w+)>/)?.[1];
 if (!userId) {
-  return sendSlackMessage(env, channel, 'Please mention a user. Usage: `/userinfo @username`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please mention a user. Usage: `/dt-userinfo @username`', responseUrl);
 }
 
 try {
@@ -323,7 +323,7 @@ await sendSlackMessage(env, channel, reminderText, responseUrl);
 
 async function handleDisposableEmail(email, env, channel, responseUrl = null) {
 if (!email) {
-  return sendSlackMessage(env, channel, 'Please provide an email. Usage: `/disify email@example.com`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide an email. Usage: `/dt-disify email@example.com`', responseUrl);
 }
 
 try {
@@ -338,7 +338,7 @@ try {
 
 async function handleDnsLookup(domain, env, channel, responseUrl = null) {
 if (!domain) {
-  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/dns example.com`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/dt-dns example.com`', responseUrl);
 }
 
 try {
@@ -355,7 +355,7 @@ try {
 
 async function handleWebsiteInfo(domain, env, channel, responseUrl = null) {
 if (!domain) {
-  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/website example.com`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/dt-website example.com`', responseUrl);
 }
 
 try {
@@ -442,32 +442,32 @@ try {
 async function sendHelpMenu(env, channel, responseUrl = null) {
 const helpText = `🤖 *Advanced Slack Bot Help*\n` +
   `*General Commands:*\n` +
-  `/help - Show this menu\n` +
-  `/qotd - Get the quote of the day\n` +
-  `/trivia - Get a random trivia question\n` +
-  `/dadjoke - Get a random dad joke\n` +
-  `/urban <term> - Look up a term on Urban Dictionary\n` +
-  `/beat [time/@XXX] - Convert between .beat time and regular time\n` +
+  `/dt-help - Show this menu\n` +
+  `/dt-qotd - Get the quote of the day\n` +
+  `/dt-trivia - Get a random trivia question\n` +
+  `/dt-dadjoke - Get a random dad joke\n` +
+  `/dt-urban <term> - Look up a term on Urban Dictionary\n` +
+  `/dt-beat [time/@XXX] - Convert between .beat time and regular time\n` +
   `\n` +
   `*Utility Commands:*\n` +
   `/dt-search <query> - Search the web\n` +
-  `/userinfo @user - Get user info\n` +
+  `/dt-userinfo @user - Get user info\n` +
   `/dt-poll <question> - Create a poll\n` +
   `/dt-remind <task> - Set a reminder\n` +
-  `/weather <city> - Get weather info\n` +
+  `/dt-weather <city> - Get weather info\n` +
   `\n` +
   `*Tech Tools:*\n` +
-  `/dns <domain> - DNS record lookup\n` +
-  `/website <domain> - Website info\n` +
-  `/disify <email> - Disposable email check\n` +
-  `/ip <ip> - Get IP info\n` +
-  `/errorid <code> - View HTTP cat for status code\n` +
+  `/dt-dns <domain> - DNS record lookup\n` +
+  `/dt-website <domain> - Website info\n` +
+  `/dt-disify <email> - Disposable email check\n` +
+  `/dt-ip <ip> - Get IP info\n` +
+  `/dt-errorid <code> - View HTTP cat for status code\n` +
   `\n` +
   `*Fun Commands:*\n` +
-  `/song <name> - Search for a song\n` +
-  `/axolotl - Random axolotl image\n` +
-  `/catfact - Random cat fact\n` +
-  `/dogfact - Random dog fact\n` +
+  `/dt-song <name> - Search for a song\n` +
+  `/dt-axolotl - Random axolotl image\n` +
+  `/dt-catfact - Random cat fact\n` +
+  `/dt-dogfact - Random dog fact\n` +
   `\n` +
   `*Automatic Features:*\n` +
   `URLs in messages will generate previews with screenshots`;
@@ -477,7 +477,7 @@ await sendSlackMessage(env, channel, helpText, responseUrl);
 
 async function handleSongSearch(song, env, channel, responseUrl = null) {
 if (!song) {
-  return sendSlackMessage(env, channel, 'Please provide a song name. Usage: `/song song name`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a song name. Usage: `/dt-song song name`', responseUrl);
 }
 
 await sendSlackMessage(env, channel, 
@@ -489,7 +489,7 @@ await sendSlackMessage(env, channel,
 
 async function handleIpLookup(ip, env, channel, responseUrl = null) {
 if (!ip) {
-  return sendSlackMessage(env, channel, 'Please provide an IP address. Usage: `/ip 1.1.1.1`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide an IP address. Usage: `/dt-ip 1.1.1.1`', responseUrl);
 }
 
 try {
@@ -602,7 +602,7 @@ try {
 
 async function handleHttpCat(code, env, channel, responseUrl = null) {
 if (!code) {
-  return sendSlackMessage(env, channel, 'Please provide an HTTP status code. Usage: `/errorid 404`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide an HTTP status code. Usage: `/dt-errorid 404`', responseUrl);
 }
 
 const validCodes = [100, 101, 200, 201, 202, 204, 206, 207, 300, 301, 302, 303, 304, 305, 307, 400, 401, 402, 403, 404, 405, 406, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 420, 421, 422, 423, 424, 425, 426, 429, 431, 444, 450, 451, 500, 502, 503, 504, 506, 507, 508, 509, 510, 511, 599];
@@ -779,7 +779,7 @@ return `👤 *User Info:*\n` +
 
 async function sendUrbanDefinition(env, channel, term, responseUrl = null) {
 if (!term) {
-  return sendSlackMessage(env, channel, 'Please provide a term. Usage: `/urban term`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a term. Usage: `/dt-urban term`', responseUrl);
 }
 
 try {
