@@ -1,4 +1,4 @@
-﻿function getTimezoneOffsetMinutes(ianaTimeZone) {
+function getTimezoneOffsetMinutes(ianaTimeZone) {
   const date = new Date();
 
   const formatter = new Intl.DateTimeFormat('en-US', {
@@ -176,26 +176,26 @@ if (contentType.includes('application/json')) {
 
     if (command) {
       const commandHandlers = {
-        '/dt-search': () => handleSearch(text, env, channel, responseUrl),
-        '/dt-userinfo': () => handleUserInfo(`<@${user}>`, env, channel, responseUrl),
-        '/dt-poll': () => handlePoll(text, env, channel, responseUrl),
-        '/dt-remind': () => handleReminder(text, env, channel, responseUrl),
-        '/dt-qotd': () => sendQuoteOfTheDay(env, channel, responseUrl),
-        '/dt-trivia': () => sendTrivia(env, channel, responseUrl),
-        '/dt-dadjoke': () => sendDadJoke(env, channel, responseUrl),
-        '/dt-urban': () => sendUrbanDefinition(env, channel, text, responseUrl),
-        '/dt-disify': () => handleDisposableEmail(text, env, channel, responseUrl),
-        '/dt-dns': () => handleDnsLookup(text, env, channel, responseUrl),
-        '/dt-website': () => handleWebsiteInfo(text, env, channel, responseUrl),
-        '/dt-weather': () => handleWeather(text, env, channel, responseUrl),
-        '/dt-help': () => sendHelpMenu(env, channel, responseUrl),
-        '/dt-song': () => handleSongSearch(text, env, channel, responseUrl),
-        '/dt-ip': () => handleIpLookup(text, env, channel, responseUrl),
-        '/dt-axolotl': () => sendAxolotl(env, channel, responseUrl),
-        '/dt-catfact': () => sendCatFact(env, channel, responseUrl),
-        '/dt-dogfact': () => sendDogFact(env, channel, responseUrl),
-        '/dt-errorid': () => handleHttpCat(text, env, channel, responseUrl),
-        '/dt-beat': () => handleBeatCommand(text, env, channel, responseUrl)
+        '/dt-search': () => handleSearch(text, env, channel, responseUrl, user),
+        '/dt-userinfo': () => handleUserInfo(`<@${user}>`, env, channel, responseUrl, user),
+        '/dt-poll': () => handlePoll(text, env, channel, responseUrl, user),
+        '/dt-remind': () => handleReminder(text, env, channel, responseUrl, user),
+        '/dt-qotd': () => sendQuoteOfTheDay(env, channel, responseUrl, false, user),
+        '/dt-trivia': () => sendTrivia(env, channel, responseUrl, user),
+        '/dt-dadjoke': () => sendDadJoke(env, channel, responseUrl, user),
+        '/dt-urban': () => sendUrbanDefinition(env, channel, text, responseUrl, user),
+        '/dt-disify': () => handleDisposableEmail(text, env, channel, responseUrl, user),
+        '/dt-dns': () => handleDnsLookup(text, env, channel, responseUrl, user),
+        '/dt-website': () => handleWebsiteInfo(text, env, channel, responseUrl, user),
+        '/dt-weather': () => handleWeather(text, env, channel, responseUrl, user),
+        '/dt-help': () => sendHelpMenu(env, channel, responseUrl, user),
+        '/dt-song': () => handleSongSearch(text, env, channel, responseUrl, user),
+        '/dt-ip': () => handleIpLookup(text, env, channel, responseUrl, user),
+        '/dt-axolotl': () => sendAxolotl(env, channel, responseUrl, user),
+        '/dt-catfact': () => sendCatFact(env, channel, responseUrl, user),
+        '/dt-dogfact': () => sendDogFact(env, channel, responseUrl, user),
+        '/dt-errorid': () => handleHttpCat(text, env, channel, responseUrl, user),
+        '/dt-beat': () => handleBeatCommand(text, env, channel, responseUrl, user)
       };
 
       const handler = commandHandlers[command];
@@ -233,27 +233,27 @@ if (body.event?.type === 'message' && !body.event.bot_id) {
   const args = text.trim().split(' ').slice(1).join(' ');
 
   const commandHandlers = {
-    '/dt-search': () => handleSearch(args, env, channel),
-    '/dt-userinfo': () => handleUserInfo(text, env, channel),
-    '/dt-poll': () => handlePoll(args, env, channel),
-    '/dt-remind': () => handleReminder(args, env, channel),
-    '/dt-qotd': () => sendQuoteOfTheDay(env, channel),
-    '/dt-trivia': () => sendTrivia(env, channel),
-    '/dt-dadjoke': () => sendDadJoke(env, channel),
-    '/dt-urban': () => sendUrbanDefinition(env, channel, args),
-    '/dt-disify': () => handleDisposableEmail(args, env, channel),
-    '/dt-dns': () => handleDnsLookup(args, env, channel),
-    '/dt-website': () => handleWebsiteInfo(args, env, channel),
-    '/dt-weather': () => handleWeather(args, env, channel),
-    '/dt-help': () => sendHelpMenu(env, channel),
-    '/dt-song': () => handleSongSearch(args, env, channel),
-    '/dt-ip': () => handleIpLookup(args, env, channel),
-    '/dt-axolotl': () => sendAxolotl(env, channel),
-    '/dt-catfact': () => sendCatFact(env, channel),
-    '/dt-dogfact': () => sendDogFact(env, channel),
-    '/dt-errorid': () => handleHttpCat(args, env, channel),
-    '/dt-beat': () => handleBeatCommand(text, env, channel),
-    'default': () => handleUrlPreviews(text, env, channel)
+    '/dt-search': () => handleSearch(args, env, channel, null, user),
+    '/dt-userinfo': () => handleUserInfo(text, env, channel, null, user),
+    '/dt-poll': () => handlePoll(args, env, channel, null, user),
+    '/dt-remind': () => handleReminder(args, env, channel, null, user),
+    '/dt-qotd': () => sendQuoteOfTheDay(env, channel, null, false, user),
+    '/dt-trivia': () => sendTrivia(env, channel, null, user),
+    '/dt-dadjoke': () => sendDadJoke(env, channel, null, user),
+    '/dt-urban': () => sendUrbanDefinition(env, channel, args, null, user),
+    '/dt-disify': () => handleDisposableEmail(args, env, channel, null, user),
+    '/dt-dns': () => handleDnsLookup(args, env, channel, null, user),
+    '/dt-website': () => handleWebsiteInfo(args, env, channel, null, user),
+    '/dt-weather': () => handleWeather(args, env, channel, null, user),
+    '/dt-help': () => sendHelpMenu(env, channel, null, user),
+    '/dt-song': () => handleSongSearch(args, env, channel, null, user),
+    '/dt-ip': () => handleIpLookup(args, env, channel, null, user),
+    '/dt-axolotl': () => sendAxolotl(env, channel, null, user),
+    '/dt-catfact': () => sendCatFact(env, channel, null, user),
+    '/dt-dogfact': () => sendDogFact(env, channel, null, user),
+    '/dt-errorid': () => handleHttpCat(args, env, channel, null, user),
+    '/dt-beat': () => handleBeatCommand(text, env, channel, null, user),
+    'default': () => handleUrlPreviews(text, env, channel, null, user)
   };
 
   const handler = commandHandlers[command] || commandHandlers['default'];
@@ -263,9 +263,9 @@ if (body.event?.type === 'message' && !body.event.bot_id) {
 return new Response('OK', { status: 200 });
 }
 
-async function handleSearch(query, env, channel, responseUrl = null) {
+async function handleSearch(query, env, channel, responseUrl = null, userId = null) {
 if (!query) {
-  return sendSlackMessage(env, channel, 'Please provide a search query. Usage: `/dt-search queryhere`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a search query. Usage: `/dt-search queryhere`', responseUrl, false, userId);
 }
 
 try {
@@ -283,62 +283,62 @@ try {
   }
   
   response += `More results: https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
-  await sendSlackMessage(env, channel, response, responseUrl);
+  await sendSlackMessage(env, channel, response, responseUrl, false, userId);
 } catch (error) {
-  await sendSlackMessage(env, channel, `Failed to search :(  Try again later`, responseUrl);
+  await sendSlackMessage(env, channel, `Failed to search :(  Try again later`, responseUrl, false, userId);
 }
 }
 
-async function handleUserInfo(text, env, channel, responseUrl = null) {
-const userId = text.match(/<@(\w+)>/)?.[1];
-if (!userId) {
-  return sendSlackMessage(env, channel, 'Please mention a user. Usage: `/dt-userinfo @username`', responseUrl);
+async function handleUserInfo(text, env, channel, responseUrl = null, userId = null) {
+const targetUserId = text.match(/<@(\w+)>/)?.[1];
+if (!targetUserId) {
+  return sendSlackMessage(env, channel, 'Please mention a user. Usage: `/dt-userinfo @username`', responseUrl, false, userId);
 }
 
 try {
-  const userInfo = await getUserInfo(env, userId);
-  await sendSlackMessage(env, channel, userInfo, responseUrl);
+  const userInfo = await getUserInfo(env, targetUserId);
+  await sendSlackMessage(env, channel, userInfo, responseUrl, false, userId);
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to fetch user info.', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to fetch user info.', responseUrl, false, userId);
 }
 }
 
-async function handlePoll(question, env, channel, responseUrl = null) {
+async function handlePoll(question, env, channel, responseUrl = null, userId = null) {
 if (!question) {
-  return sendSlackMessage(env, channel, 'Please provide a poll question. Usage: `/dt-poll questionhere`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a poll question. Usage: `/dt-poll questionhere`', responseUrl, false, userId);
 }
 
 const pollMessage = `📊 *Poll:* ${question}\nReact with :thumbsup: or :thumbsdown:`;
-await sendSlackMessage(env, channel, pollMessage, responseUrl);
+await sendSlackMessage(env, channel, pollMessage, responseUrl, true, userId);
 }
 
-async function handleReminder(task, env, channel, responseUrl = null) {
+async function handleReminder(task, env, channel, responseUrl = null, userId = null) {
 if (!task) {
-  return sendSlackMessage(env, channel, 'Please provide a reminder. Usage: `/dt-remind Do something`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a reminder. Usage: `/dt-remind Do something`', responseUrl, false, userId);
 }
 
 const reminderText = `⏰ *Reminder set:* ${task}`;
-await sendSlackMessage(env, channel, reminderText, responseUrl);
+await sendSlackMessage(env, channel, reminderText, responseUrl, false, userId);
 }
 
-async function handleDisposableEmail(email, env, channel, responseUrl = null) {
+async function handleDisposableEmail(email, env, channel, responseUrl = null, userId = null) {
 if (!email) {
-  return sendSlackMessage(env, channel, 'Please provide an email. Usage: `/dt-disify email@example.com`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide an email. Usage: `/dt-disify email@example.com`', responseUrl, false, userId);
 }
 
 try {
   const res = await fetch(`https://www.disify.com/api/email/${email}`);
   const json = await res.json();
   const message = `📧 *Disify Info:*\nEmail: ${email}\nDisposable: ${json.disposable ? 'Yes' : 'No'}\nDomain Exists: ${json.dns ? 'Yes' : 'No'}\nFormat Valid: ${json.format ? 'Yes' : 'No'}`;
-  await sendSlackMessage(env, channel, message, responseUrl);
+  await sendSlackMessage(env, channel, message, responseUrl, false, userId);
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to check email.', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to check email.', responseUrl, false, userId);
 }
 }
 
-async function handleDnsLookup(domain, env, channel, responseUrl = null) {
+async function handleDnsLookup(domain, env, channel, responseUrl = null, userId = null) {
 if (!domain) {
-  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/dt-dns example.com`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/dt-dns example.com`', responseUrl, false, userId);
 }
 
 try {
@@ -347,15 +347,15 @@ try {
   });
   const data = await ip.json();
   const answers = data.Answer?.map(a => `${a.name} (${a.type}) → ${a.data}`).join('\n') || 'No DNS records found.';
-  await sendSlackMessage(env, channel, `🌐 DNS Lookup for *${domain}*:\n${answers}`, responseUrl);
+  await sendSlackMessage(env, channel, `🌐 DNS Lookup for *${domain}*:\n${answers}`, responseUrl, false, userId);
 } catch (error) {
-  await sendSlackMessage(env, channel, 'DNS Lookup failed.', responseUrl);
+  await sendSlackMessage(env, channel, 'DNS Lookup failed.', responseUrl, false, userId);
 }
 }
 
-async function handleWebsiteInfo(domain, env, channel, responseUrl = null) {
+async function handleWebsiteInfo(domain, env, channel, responseUrl = null, userId = null) {
 if (!domain) {
-  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/dt-website example.com`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a domain. Usage: `/dt-website example.com`', responseUrl, false, userId);
 }
 
 try {
@@ -369,13 +369,13 @@ try {
   const description = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i)?.[1] || 'No description';
   
   const preview = `🌍 *Website Preview for:* ${domain}\nTitle: ${title}\nDescription: ${description}`;
-  await sendSlackMessage(env, channel, preview, responseUrl);
+  await sendSlackMessage(env, channel, preview, responseUrl, false, userId);
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to fetch website info :(  Try again later', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to fetch website info :(  Try again later', responseUrl, false, userId);
 }
 }
 
-async function handleWeather(location, env, channel, responseUrl = null) {
+async function handleWeather(location, env, channel, responseUrl = null, userId = null) {
 const city = location || 'Hyderabad';
 
 try {
@@ -383,7 +383,7 @@ try {
   const geoJson = await geoRes.json();
   
   if (!geoJson.results || geoJson.results.length === 0) {
-    return sendSlackMessage(env, channel, 'Location not found, try searching up ohio', responseUrl);
+    return sendSlackMessage(env, channel, 'Location not found, try searching up ohio', responseUrl, false, userId);
   }
   
   const { latitude, longitude, name, country } = geoJson.results[0];
@@ -432,14 +432,14 @@ try {
     `Condition: ${weatherDesc}\n` +
     `Temperature: ${current.temperature}°C\n` +
     `Wind: ${current.windspeed} km/h\n` +
-    `Time: ${new Date(current.time).toLocaleTimeString()}`, responseUrl
+    `Time: ${new Date(current.time).toLocaleTimeString()}`, responseUrl, false, userId
   );
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to fetch weather data.', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to fetch weather data.', responseUrl, false, userId);
 }
 }
 
-async function sendHelpMenu(env, channel, responseUrl = null) {
+async function sendHelpMenu(env, channel, responseUrl = null, userId = null) {
 const helpText = `🤖 *Advanced Slack Bot Help*\n` +
   `*General Commands:*\n` +
   `/dt-help - Show this menu\n` +
@@ -472,24 +472,24 @@ const helpText = `🤖 *Advanced Slack Bot Help*\n` +
   `*Automatic Features:*\n` +
   `URLs in messages will generate previews with screenshots`;
 
-await sendSlackMessage(env, channel, helpText, responseUrl);
+await sendSlackMessage(env, channel, helpText, responseUrl, false, userId);
 }
 
-async function handleSongSearch(song, env, channel, responseUrl = null) {
+async function handleSongSearch(song, env, channel, responseUrl = null, userId = null) {
 if (!song) {
-  return sendSlackMessage(env, channel, 'Please provide a song name. Usage: `/dt-song song name`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a song name. Usage: `/dt-song song name`', responseUrl, false, userId);
 }
 
 await sendSlackMessage(env, channel, 
   `🎵 *Song Search:* ${song}\n` +
   `YouTube: https://www.youtube.com/results?search_query=${encodeURIComponent(song)}\n` +
-  `Spotify: https://open.spotify.com/search/${encodeURIComponent(song)}`, responseUrl
+  `Spotify: https://open.spotify.com/search/${encodeURIComponent(song)}`, responseUrl, false, userId
 );
 }
 
-async function handleIpLookup(ip, env, channel, responseUrl = null) {
+async function handleIpLookup(ip, env, channel, responseUrl = null, userId = null) {
 if (!ip) {
-  return sendSlackMessage(env, channel, 'Please provide an IP address. Usage: `/dt-ip 1.1.1.1`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide an IP address. Usage: `/dt-ip 1.1.1.1`', responseUrl, false, userId);
 }
 
 try {
@@ -507,7 +507,7 @@ try {
     `Country: ${json.country || 'Unknown'}\n` +
     `Location: ${json.loc || 'Unknown'}\n` +
     `Organization: ${json.org || 'Unknown'}\n` +
-    `Timezone: ${json.timezone || 'Unknown'}`, responseUrl
+    `Timezone: ${json.timezone || 'Unknown'}`, responseUrl, false, userId
   );
 } catch (error) {
   try {
@@ -523,15 +523,15 @@ try {
       `City: ${json.city || 'Unknown'}\n` +
       `Region: ${json.region || 'Unknown'}\n` +
       `Country: ${json.country_name || 'Unknown'}\n` +
-      `ISP: ${json.org || 'Unknown'}`, responseUrl
+      `ISP: ${json.org || 'Unknown'}`, responseUrl, false, userId
     );
   } catch (fallbackError) {
-    await sendSlackMessage(env, channel, 'IP lookup failed :( Please try again later.', responseUrl);
+    await sendSlackMessage(env, channel, 'IP lookup failed :( Please try again later.', responseUrl, false, userId);
   }
 }
 }
 
-async function sendAxolotl(env, channel, responseUrl = null) {
+async function sendAxolotl(env, channel, responseUrl = null, userId = null) {
 try {
   const unsplashToken = env.UNSPLASH_ACCESS_KEY;
   if (!unsplashToken) {
@@ -546,7 +546,7 @@ try {
   
   const json = await res.json();
   if (json && json.urls?.regular) {
-    await sendSlackMessage(env, channel, `🦎 *Random Axolotl:*\n${json.urls.regular}`, responseUrl);
+    await sendSlackMessage(env, channel, `🦎 *Random Axolotl:*\n${json.urls.regular}`, responseUrl, false, userId);
   } else {
     throw new Error('No image found');
   }
@@ -559,26 +559,26 @@ try {
     'https://media.tenor.com/0JrWYOf9LmAAAAAM/axolotl-smile.gif'
   ];
   const randomImage = axolotlImages[Math.floor(Math.random() * axolotlImages.length)];
-  await sendSlackMessage(env, channel, `🦎 *Random Axolotl:*\n${randomImage}`, responseUrl);
+  await sendSlackMessage(env, channel, `🦎 *Random Axolotl:*\n${randomImage}`, responseUrl, false, userId);
 }
 }
 
-async function sendCatFact(env, channel, responseUrl = null) {
+async function sendCatFact(env, channel, responseUrl = null, userId = null) {
 try {
   const res = await fetch('https://catfact.ninja/fact');
   const json = await res.json();
-  await sendSlackMessage(env, channel, `🐱 *Cat Fact:* ${json.fact}`, responseUrl);
+  await sendSlackMessage(env, channel, `🐱 *Cat Fact:* ${json.fact}`, responseUrl, false, userId);
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to fetch cat fact :(', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to fetch cat fact :(', responseUrl, false, userId);
 }
 }
 
-async function sendDogFact(env, channel, responseUrl = null) {
+async function sendDogFact(env, channel, responseUrl = null, userId = null) {
 try {
   const res = await fetch('https://dog-api.kinduff.com/api/facts');
   const json = await res.json();
   if (json && json.facts && json.facts.length > 0) {
-    await sendSlackMessage(env, channel, `🐕 *Dog Fact:*\n${json.facts[0]}`, responseUrl);
+    await sendSlackMessage(env, channel, `🐕 *Dog Fact:*\n${json.facts[0]}`, responseUrl, false, userId);
   } else {
     throw new Error('No fact found');
   }
@@ -596,25 +596,25 @@ try {
     "Dogs can see in color, but not as vividly as humans."
   ];
   const randomFact = facts[Math.floor(Math.random() * facts.length)];
-  await sendSlackMessage(env, channel, `🐕 *Dog Fact:*\n${randomFact}`, responseUrl);
+  await sendSlackMessage(env, channel, `🐕 *Dog Fact:*\n${randomFact}`, responseUrl, false, userId);
 }
 }
 
-async function handleHttpCat(code, env, channel, responseUrl = null) {
+async function handleHttpCat(code, env, channel, responseUrl = null, userId = null) {
 if (!code) {
-  return sendSlackMessage(env, channel, 'Please provide an HTTP status code. Usage: `/dt-errorid 404`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide an HTTP status code. Usage: `/dt-errorid 404`', responseUrl, false, userId);
 }
 
 const validCodes = [100, 101, 200, 201, 202, 204, 206, 207, 300, 301, 302, 303, 304, 305, 307, 400, 401, 402, 403, 404, 405, 406, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 420, 421, 422, 423, 424, 425, 426, 429, 431, 444, 450, 451, 500, 502, 503, 504, 506, 507, 508, 509, 510, 511, 599];
 
 if (!validCodes.includes(Number(code))) {
-  return sendSlackMessage(env, channel, `Invalid HTTP status code. Try one of these:\n${validCodes.join(', ')}`, responseUrl);
+  return sendSlackMessage(env, channel, `Invalid HTTP status code. Try one of these:\n${validCodes.join(', ')}`, responseUrl, false, userId);
 }
 
-await sendSlackMessage(env, channel, `🐱 *HTTP Cat ${code}:*\nhttps://http.cat/${code}`, responseUrl);
+await sendSlackMessage(env, channel, `🐱 *HTTP Cat ${code}:*\nhttps://http.cat/${code}`, responseUrl, false, userId);
 }
 
-async function handleUrlPreviews(text, env, channel, responseUrl = null) {
+async function handleUrlPreviews(text, env, channel, responseUrl = null, userId = null) {
 const urls = extractUrls(text);
 if (urls.length === 0) return;
 
@@ -631,7 +631,7 @@ try {
 
   const previewText = previews.filter(Boolean).join('\n\n');
   if (previewText) {
-    await sendSlackMessage(env, channel, previewText, responseUrl);
+    await sendSlackMessage(env, channel, previewText, responseUrl, false, userId);
   }
 } catch (error) {
   console.error('URL preview error:', error);
@@ -668,27 +668,53 @@ try {
 }
 }
 
-async function sendSlackMessage(env, channel, text, responseUrl = null) {
-const slackToken = env.SLACK_BOT_TOKEN;
-if (!slackToken) {
-  console.error('Missing slack bot token bruh');
-  return;
-}
+async function sendSlackMessage(
+  env,
+  channel,
+  text,
+  responseUrl = null,
+  isPublic = false,
+  userId = null
+) {
+  const slackToken = env.SLACK_BOT_TOKEN;
+  if (!slackToken) {
+    console.error('Missing slack bot token');
+    return;
+  }
 
-try {
-  if (responseUrl) {
-    await fetch(responseUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        text,
-        mrkdwn: true,
-        response_type: 'in_channel'
-      }),
-    });
-  } else {
+  try {
+    if (responseUrl) {
+      await fetch(responseUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          text,
+          mrkdwn: true,
+          response_type: isPublic ? 'in_channel' : 'ephemeral'
+        }),
+      });
+      return;
+    }
+
+    if (!isPublic && userId) {
+      await fetch('https://slack.com/api/chat.postEphemeral', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${slackToken}`,
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          channel,
+          user: userId,
+          text,
+          mrkdwn: true
+        }),
+      });
+      return;
+    }
+
     await fetch('https://slack.com/api/chat.postMessage', {
       method: 'POST',
       headers: {
@@ -703,10 +729,9 @@ try {
         unfurl_media: false
       }),
     });
+  } catch (error) {
+    console.error('Failed to send Slack message:', error);
   }
-} catch (error) {
-  console.error('Failed to send slack message:', error);
-}
 }
 
 function decodeHtmlEntities(text) {
@@ -719,7 +744,7 @@ return text
   .replace(/&gt;/g, '>');
 }
 
-async function sendQuoteOfTheDay(env, channel, responseUrl = null) {
+async function sendQuoteOfTheDay(env, channel, responseUrl = null, isPublic = true, userId = null) {
 try {
   const apis = [
     'https://api.quotable.io/random',
@@ -746,16 +771,16 @@ try {
       }
       
       if (quote && author) {
-        return sendSlackMessage(env, channel, `💬 *Quote of the Day:*\n> "${quote}" — *${author}*`, responseUrl);
+        return sendSlackMessage(env, channel, `💬 *Quote of the Day:*\n> "${quote}" — *${author}*`, responseUrl, isPublic, userId);
       }
     } catch (error) {
       continue;
     }
   }
   
-  sendSlackMessage(env, channel, 'Could not fetch quote of the day. Try again later.', responseUrl);
+  sendSlackMessage(env, channel, 'Could not fetch quote of the day. Try again later.', responseUrl, isPublic, userId);
 } catch (error) {
-  sendSlackMessage(env, channel, 'Failed to fetch quote.', responseUrl);
+  sendSlackMessage(env, channel, 'Failed to fetch quote.', responseUrl, isPublic, userId);
 }
 }
 
@@ -777,9 +802,9 @@ return `👤 *User Info:*\n` +
   `Time Zone: ${user.tz_label} (${user.tz})`;
 }
 
-async function sendUrbanDefinition(env, channel, term, responseUrl = null) {
+async function sendUrbanDefinition(env, channel, term, responseUrl = null, userId = null) {
 if (!term) {
-  return sendSlackMessage(env, channel, 'Please provide a term. Usage: `/dt-urban term`', responseUrl);
+  return sendSlackMessage(env, channel, 'Please provide a term. Usage: `/dt-urban term`', responseUrl, false, userId);
 }
 
 try {
@@ -795,17 +820,17 @@ try {
       `📚 *Urban Dictionary: ${term}*\n` +
       `${definition}\n\n` +
       `${example}\n\n` +
-      `👍 ${topDef.thumbs_up} 👎 ${topDef.thumbs_down}`, responseUrl
+      `👍 ${topDef.thumbs_up} 👎 ${topDef.thumbs_down}`, responseUrl, false, userId
     );
   } else {
-    await sendSlackMessage(env, channel, `No definition found for "${term}".`, responseUrl);
+    await sendSlackMessage(env, channel, `No definition found for "${term}".`, responseUrl, false, userId);
   }
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to fetch Urban Dictionary definition.', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to fetch Urban Dictionary definition.', responseUrl, false, userId);
 }
 }
 
-async function sendTrivia(env, channel, responseUrl = null) {
+async function sendTrivia(env, channel, responseUrl = null, userId = null) {
 try {
   const res = await fetch('https://opentdb.com/api.php?amount=1&type=multiple');
   const json = await res.json();
@@ -821,29 +846,29 @@ try {
       `❓ *Trivia (${trivia.category} - ${trivia.difficulty}):*\n` +
       `${question}\n\n` +
       `*Options:* ${options.join(', ')}\n` +
-      `_Answer: ||${correct}||_`, responseUrl
+      `_Answer: ||${correct}||_`, responseUrl, false, userId
     );
   } else {
-    await sendSlackMessage(env, channel, 'No trivia found.', responseUrl);
+    await sendSlackMessage(env, channel, 'No trivia found.', responseUrl, false, userId);
   }
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to fetch trivia.', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to fetch trivia.', responseUrl, false, userId);
 }
 }
 
-async function sendDadJoke(env, channel, responseUrl = null) {
+async function sendDadJoke(env, channel, responseUrl = null, userId = null) {
 try {
   const res = await fetch('https://icanhazdadjoke.com/', {
     headers: { 'Accept': 'application/json' },
   });
   const json = await res.json();
-  await sendSlackMessage(env, channel, `😂 *Dad Joke:*\n${json.joke}`, responseUrl);
+  await sendSlackMessage(env, channel, `😂 *Dad Joke:*\n${json.joke}`, responseUrl, false, userId);
 } catch (error) {
-  await sendSlackMessage(env, channel, 'Failed to fetch dad joke, looks like the bot also does not like dad jokes', responseUrl);
+  await sendSlackMessage(env, channel, 'Failed to fetch dad joke, looks like the bot also does not like dad jokes', responseUrl, false, userId);
 }
 }
 
-async function handleBeatCommand(text, env, channel, responseUrl = null) {
+async function handleBeatCommand(text, env, channel, responseUrl = null, userId = null) {
   const args = text.split(/ +/g).filter(x => x);
 
   if (!args.length) {
@@ -858,7 +883,7 @@ async function handleBeatCommand(text, env, channel, responseUrl = null) {
               minute: '2-digit',
               timeZoneName: 'short',
               timeZone: 'UTC'
-          })}`, responseUrl);
+          })}`, responseUrl, false, userId);
   } else if (args[0].startsWith('@') && args[0].length == 4) {
       const beat = args[0].slice(1);
       const b = parseInt(beat);
@@ -866,7 +891,7 @@ async function handleBeatCommand(text, env, channel, responseUrl = null) {
       if (isNaN(b)) {
           return await sendSlackMessage(env, channel, 
               `Invalid .beat time: ${args[0]}. Please use format @XXX where XXX is a number between 000 and 999.`, 
-              responseUrl);
+              responseUrl, false, userId);
       }
 
       const ms = b * 86.4 * 1000;
@@ -882,7 +907,7 @@ async function handleBeatCommand(text, env, channel, responseUrl = null) {
               minute: '2-digit',
               timeZoneName: 'short',
               timeZone: 'UTC'
-          })}`, responseUrl);
+          })}`, responseUrl, false, userId);
   } else {
       const timeString = args.join(' ');
       const date = new Date(timeString);
@@ -890,7 +915,7 @@ async function handleBeatCommand(text, env, channel, responseUrl = null) {
       if (isNaN(date.getTime())) {
           return await sendSlackMessage(env, channel,
               `Could not understand the time string: "${timeString}". Please use a valid time format or .beat time (@XXX).`,
-              responseUrl);
+              responseUrl, false, userId);
       }
 
       const beat = getBMTBeatTime(date);
@@ -903,6 +928,6 @@ async function handleBeatCommand(text, env, channel, responseUrl = null) {
               minute: '2-digit',
               timeZoneName: 'short',
               timeZone: 'UTC'
-          })}`, responseUrl);
+          })}`, responseUrl, false, userId);
   }
 }
